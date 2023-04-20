@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 navbar bg-[#f2f2f2] sticky top-0">
+    <div className="max-w-7xl mx-auto px-4 navbar bg-[#f2f2f2] sticky top-0 z-50">
       <div className="flex-1">
         <a className="btn btn-ghost normal-case text-xl">newsMaster</a>
       </div>

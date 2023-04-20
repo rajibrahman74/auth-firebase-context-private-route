@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse justify-between">
-        <div className="w-[50%] flex justify-center">
+        <div className="w-[50%] flex justify-center items-center">
           <img
             src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
             className="w-80 rounded-lg shadow-2xl"

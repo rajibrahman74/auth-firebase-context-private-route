@@ -1,6 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse justify-evenly">
@@ -13,7 +23,7 @@ const Login = () => {
           </p>
         </div>
         <div className="w-[50%] card flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body">
+          <form onSubmit={handleLogin} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -48,6 +58,9 @@ const Login = () => {
                 Login
               </button>
             </div>
+            <Link className="text-center text-sm" to="/register">
+              <button className="label-text-alt link link-hover"> newsMaster Register</button>
+            </Link>
           </form>
         </div>
       </div>
