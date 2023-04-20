@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../Providers/AuthProviders";
 
 const Home = () => {
+  const user = useContext(UserContext);
+
   return (
     <div className="max-w-7xl mx-auto px-4 hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse justify-between">
@@ -11,7 +14,9 @@ const Home = () => {
           />
         </div>
         <div className="w-[50%]">
-          <h1 className="text-5xl font-bold">Box Office News!</h1>
+          <h1 className="text-5xl font-bold">
+            Box Office News! {user && <span>{user.displayName}</span>}
+          </h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
