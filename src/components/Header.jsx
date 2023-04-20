@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 navbar bg-[#f2f2f2]">
+    <div className="max-w-7xl mx-auto px-4 navbar bg-[#f2f2f2] sticky top-0">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">authMater</a>
+        <a className="btn btn-ghost normal-case text-xl">newsMaster</a>
       </div>
       <div className="flex gap-10 mr-12 font-semibold text-primary-focus">
         <Link to="/">Home</Link>
