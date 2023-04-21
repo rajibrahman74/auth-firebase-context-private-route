@@ -1,7 +1,12 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../Providers/AuthProviders";
 
 const Login = () => {
+  const { user, signInUser } = useContext(UserContext);
+  console.log(signInUser);
+
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -9,6 +14,16 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+
+    signInUser(email, password)
+      .then((result) => {
+        const signIn = result.user;
+        console.log(signIn);
+        form.reset();
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   };
 
   return (
@@ -59,7 +74,10 @@ const Login = () => {
               </button>
             </div>
             <Link className="text-center text-sm" to="/register">
-              <button className="label-text-alt link link-hover"> newsMaster Register</button>
+              <button className="label-text-alt link link-hover">
+                {" "}
+                newsMaster Register
+              </button>
             </Link>
           </form>
         </div>

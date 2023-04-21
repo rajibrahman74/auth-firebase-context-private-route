@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../Providers/AuthProviders";
 
 const Register = () => {
-  const handleRegister = e => {
+  const { user, createUser } = useContext(UserContext);
+
+  const handleRegister = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -10,7 +13,17 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password);
-  }
+
+    createUser(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        form.reset();
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
   return (
     <div className="max-w-7xl mx-auto px-4 hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row-reverse justify-evenly">
@@ -59,7 +72,7 @@ const Register = () => {
             </div>
             <div className="form-control mt-6">
               <button type="submit" className="btn btn-primary">
-                Login
+                Register
               </button>
             </div>
           </form>
