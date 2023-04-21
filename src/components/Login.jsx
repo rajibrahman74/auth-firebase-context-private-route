@@ -2,10 +2,10 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../Providers/AuthProviders";
+import "./Login.css";
 
 const Login = () => {
-  const { user, signInUser } = useContext(UserContext);
-  console.log(signInUser);
+  const { signInUser, singInWithGoogle } = useContext(UserContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,6 +20,17 @@ const Login = () => {
         const signIn = result.user;
         console.log(signIn);
         form.reset();
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    singInWithGoogle()
+      .then((result) => {
+        const loggedGoogleUser = result.user;
+        console.log(loggedGoogleUser);
       })
       .catch((error) => {
         console.error(error.message);
@@ -72,10 +83,19 @@ const Login = () => {
               <button type="submit" className="btn btn-primary">
                 Login
               </button>
+              <button
+                onClick={handleGoogleSignIn}
+                className="google-signin-button"
+              >
+                <img
+                  src="https://developers.google.com/identity/images/g-logo.png"
+                  alt="Google logo"
+                />
+                Sign in with Google
+              </button>
             </div>
             <Link className="text-center text-sm" to="/register">
               <button className="label-text-alt link link-hover">
-                {" "}
                 newsMaster Register
               </button>
             </Link>
