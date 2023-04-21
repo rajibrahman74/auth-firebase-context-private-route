@@ -22,18 +22,21 @@ const Header = () => {
         <Link to="/">Home</Link>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
+        <Link to="/orders">Orders</Link>
       </div>
       <div>
         {user ? (
           <>
-            <span>{user.email}</span>
-            <button onClick={handleLogout} className="btn btn-primary btn-xs">
+            <button
+              onClick={handleLogout}
+              className="btn btn-primary btn-xs mr-4"
+            >
               Sign out
             </button>
           </>
         ) : (
           <>
-            <button className="btn btn-primary btn-xs">
+            <button className="btn btn-primary btn-xs mr-4">
               <Link to="/login">Login</Link>
             </button>
           </>

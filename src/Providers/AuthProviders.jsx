@@ -12,7 +12,11 @@ export const UserContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthProviders = ({ children }) => {
-  const [user, setUser] = useState("Rajib Rahman");
+  // user state
+  const [user, setUser] = useState(null);
+
+  // loading
+  const [loading, setLoading] = useState(true);
 
   // function for createUser
   const createUser = (email, password) =>
@@ -32,6 +36,7 @@ const AuthProviders = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("On auth state changed", currentUser);
       setUser(currentUser);
+      setLoading(false);
     });
     return () => {
       unsubscribe();
@@ -43,6 +48,7 @@ const AuthProviders = ({ children }) => {
     createUser,
     signInUser,
     logOut,
+    loading,
   };
 
   return (
