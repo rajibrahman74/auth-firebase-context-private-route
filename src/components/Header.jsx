@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../Providers/AuthProviders";
 
 const Header = () => {
+  const { user, logOut } = useContext(UserContext);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error.message);
+      });
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 navbar bg-[#f2f2f2] sticky top-0 z-50">
       <div className="flex-1">
@@ -11,6 +22,22 @@ const Header = () => {
         <Link to="/">Home</Link>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>
+      </div>
+      <div>
+        {user ? (
+          <>
+            <span>{user.email}</span>
+            <button onClick={handleLogout} className="btn btn-primary btn-xs">
+              Sign out
+            </button>
+          </>
+        ) : (
+          <>
+            <button className="btn btn-primary btn-xs">
+              <Link to="/login">Login</Link>
+            </button>
+          </>
+        )}
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
